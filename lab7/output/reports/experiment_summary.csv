@@ -1,0 +1,3 @@
+﻿case_name;font_size;recognized;truth;symbols_found;correct;errors;accuracy_percent
+base_case;180;TEQUIERO;TEQUIERO;8;8;0;100.0
+changed_size_case;188;TZQUIZRO;TEQUIERO;8;6;2;75.0

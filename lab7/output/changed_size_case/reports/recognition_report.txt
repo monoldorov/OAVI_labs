@@ -1,0 +1,6 @@
+Ground truth: TEQUIERO
+Recognized:   TZQUIZRO
+Total:        8
+Correct:      6
+Errors:       2
+Accuracy, %:  75.00

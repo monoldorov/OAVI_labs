@@ -1,0 +1,6 @@
+Ground truth: TEQUIERO
+Recognized:   TEQUIERO
+Total:        8
+Correct:      8
+Errors:       0
+Accuracy, %:  100.00
