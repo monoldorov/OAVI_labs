@@ -70,8 +70,14 @@ cartoon.png → cartoon.abs_diff_contrast.png
 #### Исходные данные
 
 Бинарные изображения брались из папки:
+[input/pictures_binary_src/](input/pictures_binary_src)
 
-`input/pictures_binary_src/`
+![](input/pictures_binary_src/cartoon_5x5.png)
+![](input/pictures_binary_src/map_5x5.png)
+![](input/pictures_binary_src/photo_5x5.png)
+![](input/pictures_binary_src/test.png)
+![](input/pictures_binary_src/text_5x5.png)
+![](input/pictures_binary_src/x-ray_5x5.png)
 
 #### Что формировалось
 
@@ -84,11 +90,25 @@ cartoon.png → cartoon.abs_diff_contrast.png
 
 Результаты дилатации сохранялись в папку:
 
-`output/results_binary_dilated/`
+[output/results_binary_dilated/](output/results_binary_dilated)
+
+![](output/results_binary_dilated/cartoon_5x5.dilated.png)
+![](output/results_binary_dilated/map_5x5.dilated.png)
+![](output/results_binary_dilated/photo_5x5.dilated.png)
+![](output/results_binary_dilated/test.dilated.png)
+![](output/results_binary_dilated/text_5x5.dilated.png)
+![](output/results_binary_dilated/x-ray_5x5.dilated.png)
 
 Разностные изображения XOR сохранялись в папку:
 
-`output/results_binary_diff/`
+[output/results_binary_diff/](output/results_binary_diff)
+
+![](output/results_binary_diff/cartoon_5x5.xor_diff.png)
+![](output/results_binary_diff/map_5x5.xor_diff.png)
+![](output/results_binary_diff/photo_5x5.xor_diff.png)
+![](output/results_binary_diff/test.xor_diff.png)
+![](output/results_binary_diff/text_5x5.xor_diff.png)
+![](output/results_binary_diff/x-ray_5x5.xor_diff.png)
 
 #### Особенности обработки
 
@@ -107,7 +127,13 @@ cartoon.png → cartoon.abs_diff_contrast.png
 
 Полутоновые изображения брались из папки:
 
-`input/pictures_semitone_src/`
+[input/pictures_semitone_src/](input/pictures_semitone_src)
+
+![](input/pictures_semitone_src/cartoon.png)
+![](input/pictures_semitone_src/map.png)
+![](input/pictures_semitone_src/photo.png)
+![](input/pictures_semitone_src/text.png)
+![](input/pictures_semitone_src/x-ray.png)
 
 #### Что формировалось
 
@@ -118,13 +144,30 @@ cartoon.png → cartoon.abs_diff_contrast.png
 
 #### Куда сохранялись результаты
 
-Результаты дилатации сохранялись в папку:
-
-`output/results_semitone_dilated/`
-
 Разностные изображения сохранялись в папку:
 
-`output/results_semitone_diff/`
+[output/results_semitone_diff/](output/results_semitone_diff)
+
+![сontrast](output/results_semitone_diff/cartoon.abs_diff_contrast.png)
+![](output/results_semitone_diff/cartoon.abs_diff.png)
+![contrast](output/results_semitone_diff/map.abs_diff_contrast.png)
+![](output/results_semitone_diff/map.abs_diff.png)
+![contrast](output/results_semitone_diff/photo.abs_diff_contrast.png)
+![](output/results_semitone_diff/photo.abs_diff.png)
+![contrast](output/results_semitone_diff/text.abs_diff_contrast.png)
+![](output/results_semitone_diff/text.abs_diff.png)
+![contrast](output/results_semitone_diff/x-ray.abs_diff_contrast.png)
+![](output/results_semitone_diff/x-ray.abs_diff.png)
+
+Результаты дилатации сохранялись в папку:
+
+[output/results_semitone_diff/](output/results_semitone_dilated)
+
+![](output/results_semitone_dilated/cartoon.dilated.png)
+![](output/results_semitone_dilated/map.dilated.png)
+![](output/results_semitone_dilated/photo.dilated.png)
+![](output/results_semitone_dilated/text.dilated.png)
+![](output/results_semitone_dilated/x-ray.dilated.png)
 
 #### Особенности обработки
 
