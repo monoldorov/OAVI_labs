@@ -1,14 +1,15 @@
-# Лабораторная работа №9. Обработка звука
+# Лабораторная работа №9. Анализ шума
 
-**Анализ звукового сигнала. Построение waveform, спектра и спектрограммы. Шумоподавление методом спектрального вычитания.**
 
-**Файл:** `violin_1.wav`
+**Файл:** [`violin_1.wav`](input/violin_1.wav)
 **Инструмент:** `скрипка`
 **Формат:** `WAV`
 **Каналы:** `mono`
 **Частота дискретизации:** `44100 Hz`
 **Метод шумоподавления:** `спектральное вычитание`
 **Окно STFT:** `Hann`
+
+---
 
 ## Теоретическая часть
 
@@ -34,6 +35,8 @@
 
 Фильтр Савицкого–Голея не выбран как основной, потому что он сглаживает сигнал во временной области и может ухудшить тембр музыкального инструмента.
 
+---
+
 ## Практическая часть
 
 Реализован автоматический конвейер:
@@ -50,20 +53,45 @@
 * расчёт SNR до и после обработки;
 * поиск частотно-временных областей с максимальной энергией.
 
+---
+
 ## Что реализуется в файлах
 
-`main.py` — основной файл лабораторной;
-`input/violin_1.wav` — исходная аудиозапись;
-`output/waveform_original.png` — waveform исходного сигнала;
-`output/waveform_spectral_subtraction.png` — waveform после обработки;
-`output/spectrum_original.png` — спектр исходного сигнала;
-`output/spectrum_spectral_subtraction.png` — спектр после обработки;
-`output/spectrogram_original.png` — спектрограмма исходного сигнала;
-`output/spectrogram_spectral_subtraction.png` — спектрограмма после обработки;
-`output/violin_1_spectral_subtraction.wav` — обработанный аудиофайл;
-`output/snr_metrics.csv` — сравнение SNR до и после обработки;
-`output/energy_moments_original.csv` — максимумы энергии исходного сигнала;
-`output/energy_moments_spectral_subtraction.csv` — максимумы энергии после обработки.
+[`src/main.py`](src/main.py) — основной файл лабораторной.
+
+Входные данные:
+
+* [`input/`](input/) — папка с исходным аудиофайлом;
+* [`input/violin_1.wav`](input/violin_1.wav) — исходная аудиозапись скрипки.
+
+Выходные данные:
+
+* [`output/`](output/) — папка со всеми результатами;
+* [`output/waveform_original.png`](output/waveform_original.png) — waveform исходного сигнала;
+* [`output/waveform_spectral_subtraction.png`](output/waveform_spectral_subtraction.png) — waveform после обработки;
+* [`output/spectrum_original.png`](output/spectrum_original.png) — спектр исходного сигнала;
+* [`output/spectrum_spectral_subtraction.png`](output/spectrum_spectral_subtraction.png) — спектр после обработки;
+* [`output/spectrogram_original.png`](output/spectrogram_original.png) — спектрограмма исходного сигнала;
+* [`output/spectrogram_spectral_subtraction.png`](output/spectrogram_spectral_subtraction.png) — спектрограмма после обработки;
+* [`output/violin_1_spectral_subtraction.wav`](output/violin_1_spectral_subtraction.wav) — обработанный аудиофайл;
+* [`output/snr_metrics.csv`](output/snr_metrics.csv) — сравнение SNR до и после обработки;
+* [`output/energy_moments_original.csv`](output/energy_moments_original.csv) — максимумы энергии исходного сигнала;
+* [`output/energy_moments_spectral_subtraction.csv`](output/energy_moments_spectral_subtraction.csv) — максимумы энергии после обработки.
+
+---
+
+## Структура проекта
+
+| Путь                                       | Назначение                     |
+| ------------------------------------------ | ------------------------------ |
+| [`input/`](input/)                         | папка с исходным аудиофайлом   |
+| [`input/violin_1.wav`](input/violin_1.wav) | исходная запись скрипки        |
+| [`output/`](output/)                       | папка с результатами обработки |
+| [`src/`](src/)                             | папка с исходным кодом         |
+| [`src/main.py`](src/main.py)               | основной Python-скрипт         |
+| [`README.md`](README.md)                   | описание лабораторной работы   |
+
+---
 
 ## Описание обработки по частям лабораторной
 
@@ -71,11 +99,11 @@
 
 Исходный файл берётся из папки:
 
-`input/`
+[`input/`](input/)
 
 Файл:
 
-`input/violin_1.wav`
+[`input/violin_1.wav`](input/violin_1.wav)
 
 Параметры записи:
 
@@ -86,7 +114,9 @@
 
 Запись содержит участок фонового шума в начале, основной звук скрипки и затухание в конце.
 
-**Вывод: файл подходит для лабораторной, так как содержит и полезный сигнал, и отдельный участок шума.**
+**Вывод:** файл подходит для лабораторной, так как содержит и полезный сигнал, и отдельный участок шума.
+
+---
 
 ### Часть 2. Построение waveform
 
@@ -94,10 +124,20 @@
 
 Результаты:
 
-* `output/waveform_original.png`
-* `output/waveform_spectral_subtraction.png`
+* [`output/waveform_original.png`](output/waveform_original.png)
+* [`output/waveform_spectral_subtraction.png`](output/waveform_spectral_subtraction.png)
 
-**Вывод: waveform показывает общую структуру записи, но эффект шумоподавления на нём виден слабо, потому что шум намного тише основного сигнала.**
+#### Waveform исходного сигнала
+
+![Waveform исходного сигнала](output/waveform_original.png)
+
+#### Waveform после спектрального вычитания
+
+![Waveform после обработки](output/waveform_spectral_subtraction.png)
+
+**Вывод:** waveform показывает общую структуру записи, но эффект шумоподавления на нём виден слабо, потому что шум намного тише основного сигнала.
+
+---
 
 ### Часть 3. Построение спектра
 
@@ -105,10 +145,20 @@
 
 Результаты:
 
-* `output/spectrum_original.png`
-* `output/spectrum_spectral_subtraction.png`
+* [`output/spectrum_original.png`](output/spectrum_original.png)
+* [`output/spectrum_spectral_subtraction.png`](output/spectrum_spectral_subtraction.png)
 
-**Вывод: после обработки общий вид спектра почти не изменился, значит полезные гармоники скрипки в основном сохранились.**
+#### Спектр исходного сигнала
+
+![Спектр исходного сигнала](output/spectrum_original.png)
+
+#### Спектр после спектрального вычитания
+
+![Спектр после обработки](output/spectrum_spectral_subtraction.png)
+
+**Вывод:** после обработки общий вид спектра почти не изменился, значит полезные гармоники скрипки в основном сохранились.
+
+---
 
 ### Часть 4. Построение спектрограммы
 
@@ -123,10 +173,20 @@
 
 Результаты:
 
-* `output/spectrogram_original.png`
-* `output/spectrogram_spectral_subtraction.png`
+* [`output/spectrogram_original.png`](output/spectrogram_original.png)
+* [`output/spectrogram_spectral_subtraction.png`](output/spectrogram_spectral_subtraction.png)
 
-**Вывод: спектрограмма после обработки изменилась слабо. Это нормально, так как алгоритм должен уменьшать шум, но не разрушать структуру музыкального сигнала.**
+#### Спектрограмма исходного сигнала
+
+![Спектрограмма исходного сигнала](output/spectrogram_original.png)
+
+#### Спектрограмма после спектрального вычитания
+
+![Спектрограмма после обработки](output/spectrogram_spectral_subtraction.png)
+
+**Вывод:** спектрограмма после обработки изменилась слабо. Это нормально, так как алгоритм должен уменьшать шум, но не разрушать структуру музыкального сигнала.
+
+---
 
 ### Часть 5. Оценка шума и SNR
 
@@ -134,7 +194,7 @@
 
 Результат сохраняется в файл:
 
-`output/snr_metrics.csv`
+[`output/snr_metrics.csv`](output/snr_metrics.csv)
 
 Полученные значения:
 
@@ -142,7 +202,9 @@
 * SNR после обработки: `39.45 dB`;
 * улучшение: около `4.90 dB`.
 
-**Вывод: после шумоподавления отношение сигнал/шум увеличилось, значит шумовая составляющая была уменьшена.**
+**Вывод:** после шумоподавления отношение сигнал/шум увеличилось, значит шумовая составляющая была уменьшена.
+
+---
 
 ### Часть 6. Шумоподавление
 
@@ -157,9 +219,11 @@
 
 Обработанный файл:
 
-`output/violin_1_spectral_subtraction.wav`
+[`output/violin_1_spectral_subtraction.wav`](output/violin_1_spectral_subtraction.wav)
 
-**Вывод: шум стал меньше, но основной звук скрипки почти не изменился. Это хороший результат для мягкого шумоподавления.**
+**Вывод:** шум стал меньше, но основной звук скрипки почти не изменился. Это хороший результат для мягкого шумоподавления.
+
+---
 
 ### Часть 7. Поиск моментов максимальной энергии
 
@@ -170,10 +234,34 @@
 
 Результаты:
 
-* `output/energy_moments_original.csv`
-* `output/energy_moments_spectral_subtraction.csv`
+* [`output/energy_moments_original.csv`](output/energy_moments_original.csv)
+* [`output/energy_moments_spectral_subtraction.csv`](output/energy_moments_spectral_subtraction.csv)
 
-**Вывод: основные энергетические области после обработки остались близкими к исходным, значит алгоритм не разрушил структуру звукового сигнала.**
+**Вывод:** основные энергетические области после обработки остались близкими к исходным, значит алгоритм не разрушил структуру звукового сигнала.
+
+---
+
+## Сводная таблица результатов
+
+| Вид результата    | Исходный сигнал                                                     | После шумоподавления                                                                        |
+| ----------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| Waveform          | [`waveform_original.png`](output/waveform_original.png)             | [`waveform_spectral_subtraction.png`](output/waveform_spectral_subtraction.png)             |
+| Спектр            | [`spectrum_original.png`](output/spectrum_original.png)             | [`spectrum_spectral_subtraction.png`](output/spectrum_spectral_subtraction.png)             |
+| Спектрограмма     | [`spectrogram_original.png`](output/spectrogram_original.png)       | [`spectrogram_spectral_subtraction.png`](output/spectrogram_spectral_subtraction.png)       |
+| Максимумы энергии | [`energy_moments_original.csv`](output/energy_moments_original.csv) | [`energy_moments_spectral_subtraction.csv`](output/energy_moments_spectral_subtraction.csv) |
+| Аудиофайл         | [`violin_1.wav`](input/violin_1.wav)                                | [`violin_1_spectral_subtraction.wav`](output/violin_1_spectral_subtraction.wav)             |
+
+---
+
+## Табличные результаты
+
+| Файл                                                                                               | Назначение                                             |
+| -------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| [`output/snr_metrics.csv`](output/snr_metrics.csv)                                                 | значения SNR до и после шумоподавления                 |
+| [`output/energy_moments_original.csv`](output/energy_moments_original.csv)                         | частотно-временные максимумы энергии исходного сигнала |
+| [`output/energy_moments_spectral_subtraction.csv`](output/energy_moments_spectral_subtraction.csv) | частотно-временные максимумы энергии после обработки   |
+
+---
 
 ## Общий вывод
 
