@@ -1,0 +1,4 @@
+sound;file;duration_sec;sample_rate_hz;min_voice_freq_hz;max_voice_freq_hz;main_tone_hz;harmonics_count;formant_1_hz;formant_2_hz;formant_3_hz
+A;a_voice.wav;2.543;44100;147.84;4808.04;184.02;13;587.44;641.31;732.92
+I;i_voice.wav;1.949;44100;196.0;3759.32;211.39;8;571.57;598.25;623.9
+Imitation;imitation.wav;2.223;44100;124.62;2311.04;398.14;2;542.11;554.7;602.84
